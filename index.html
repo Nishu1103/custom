@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate Poster</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #0b1724;
+      color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .app {
+      background: #ffffff;
+      color: #111827;
+      border-radius: 12px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+      padding: 24px 28px 28px;
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 24px;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      border-right: 1px solid #e5e7eb;
+      padding-right: 20px;
+    }
+    .controls h1 {
+      font-size: 22px;
+      margin: 0 0 4px;
+    }
+    .controls p {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+    }
+    .field label {
+      font-weight: 600;
+      color: #374151;
+    }
+    .hint {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+    input[type="file"],
+    input[type="text"] {
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      outline: none;
+      width: 100%;
+    }
+    input[type="text"] {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    input[type="file"]:focus,
+    input[type="text"]:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+    }
+    #download {
+      margin-top: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 10px 18px rgba(234, 88, 12, 0.35);
+    }
+    #download:hover {
+      background: linear-gradient(135deg, #fb923c, #f97316);
+      transform: translateY(-1px);
+    }
+    #download:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 12px rgba(234, 88, 12, 0.35);
+    }
+    .preview {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+    .preview-label {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #6b7280;
+    }
+    canvas {
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      max-width: 100%;
+      height: auto;
+    }
+    @media (max-width: 900px) {
+      .app {
+        grid-template-columns: 1fr !important;
+      }
+      .controls {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+        padding-right: 0;
+        padding-bottom: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="controls">
+      <div>
+        <h1>Election Poster Generator</h1>
+        <p>Upload candidate photo and enter the supporter name. Download ready-to-share artwork in one click.</p>
+      </div>
+
+      <div class="field">
+        <label for="photo">1. Upload candidate photo</label>
+        <input type="file" id="photo" accept="image/*" />
+        <span class="hint">Use a clear, front-facing photo with good lighting.</span>
+      </div>
+
+      <div class="field">
+        <label for="name">2. Enter supporter name</label>
+        <input type="text" id="name" placeholder="TYPE NAME IN CAPITAL" autocomplete="off" />
+        <span class="hint">Name will automatically appear in CAPITAL LETTERS on the yellow band.</span>
+      </div>
+
+      <button id="download">⬇ Download Final Poster</button>
+    </div>
+
+    <div class="preview">
+      <div class="preview-label">
+        <span>Live preview</span>
+        <span class="hint">Template size: 1080 × 1080 px</span>
+      </div>
+      <canvas id="canvas" width="1080" height="1080"></canvas>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
