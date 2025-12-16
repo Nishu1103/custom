@@ -52,9 +52,10 @@ function render() {
   if (name) {
     ctx.font = "bold 44px Arial";
     ctx.fillStyle = "#000";
-    ctx.textAlign = "center";
+    ctx.textAlign = "left";
     ctx.textBaseline = "middle";
-    ctx.fillText(name, 340, 470);
+    // start text a bit from left edge of yellow band
+    ctx.fillText(name, 80, 470);
   }
 }
 
